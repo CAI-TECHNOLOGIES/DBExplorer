@@ -1,0 +1,10 @@
+.QueryExecutionButton {
+    position: relative;
+}
+
+.QueryViewNavigator-wrapper {
+    min-width: 400px;
+    .QueryViewNavigator {
+        max-height: 500px;
+    }
+}

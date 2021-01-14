@@ -1,0 +1,41 @@
+.SearchAndReplaceBar {
+    border: var(--border);
+    border-top: none;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+
+    .position-info {
+        user-select: none;
+        font-size: var(--xsmall-text-size);
+    }
+
+    .datadoc-search-input {
+        border: var(--border);
+        padding: 4px;
+
+        border-radius: var(--border-radius);
+
+        background-color: transparent;
+        width: 250px;
+        display: flex;
+        align-items: center;
+
+        &:focus-within {
+            border-color: var(--focus-border-color);
+            background-color: var(--bg-color);
+        }
+
+        .DebouncedInput {
+            flex: 1;
+            input {
+                border: none;
+                padding: 0;
+                color: inherit;
+                font-size: var(--text-size);
+            }
+        }
+    }
+}

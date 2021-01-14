@@ -1,0 +1,32 @@
+@import './../../scss_variables.scss';
+
+.QueryExecutionPicker {
+    .execution-selector-button {
+        cursor: pointer;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .query-execution-item {
+        display: flex;
+        white-space: nowrap;
+
+        &.query-execution-selected,
+        &:hover {
+            color: var(--text-color);
+            background-color: var(--hover-bg-color);
+        }
+    }
+
+    .query-execution-item-wrapper {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .query-execution-item-header {
+        padding: 8px 12px;
+        border-bottom: var(--border);
+        align-items: flex-end;
+    }
+}

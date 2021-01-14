@@ -1,0 +1,39 @@
+#Codemirror-tooltip-container {
+    position: fixed;
+    z-index: 300;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.CodeMirrorTooltip {
+    background-color: var(--bg-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    .rich-text-content {
+        max-width: 280px;
+        max-height: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 8px;
+        white-space: pre-wrap;
+        word-break: break-word;
+
+        .table-tooltip-header {
+            font-size: var(--text-size);
+            color: var(--dark-text-color);
+            font-weight: var(--bold-font);
+            justify-content: space-between;
+            align-items: start;
+        }
+        .tooltip-title {
+            font-weight: var(--bold-font);
+            margin-bottom: 0;
+        }
+
+        .tooltip-content {
+            margin-left: 4px;
+        }
+    }
+}

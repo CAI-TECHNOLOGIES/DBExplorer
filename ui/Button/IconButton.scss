@@ -1,0 +1,78 @@
+.IconButton {
+    cursor: pointer;
+    padding: 10px;
+    color: var(--icon-color);
+    transition: color 0.2s ease-out;
+    transition: fill 0.2s ease-out;
+    display: inline-flex;
+    position: relative;
+
+    &.invert-circle {
+        background-color: var(--color-primary-3);
+        padding: 4px;
+        border-radius: 50%;
+    }
+
+    &.no-padding {
+        padding: 0px;
+    }
+    &:hover {
+        color: var(--icon-hover-color);
+    }
+    &.active {
+        color: var(--icon-active-color);
+    }
+    &.fill {
+        svg {
+            fill: var(--icon-color);
+        }
+        &:hover {
+            svg {
+                fill: var(--icon-hover-color);
+            }
+        }
+        &.active {
+            svg {
+                fill: var(--icon-active-color);
+            }
+        }
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+    }
+
+    &.with-title {
+        padding-bottom: 0px;
+    }
+
+    .ping,
+    .ping-message {
+        position: absolute;
+        cursor: default;
+        border-radius: 100px;
+        background-color: var(--color-accent-bg);
+    }
+
+    .ping {
+        right: 8px;
+        top: 8px;
+
+        width: 12px;
+        height: 12px;
+    }
+
+    .ping-message {
+        right: 4px;
+        top: 4px;
+        padding: 1px 6px 0px 6px;
+
+        color: var(--color-accent-text);
+        font-size: var(--xsmall-text-size);
+        font-weight: var(--bold-font);
+    }
+
+    .icon-title {
+        font-size: var(--xxxsmall-text-size);
+    }
+}

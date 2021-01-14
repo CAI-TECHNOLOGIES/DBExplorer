@@ -1,0 +1,44 @@
+.Tag,
+.TagGroup {
+    display: inline-flex;
+    margin: 2px 4px;
+    border-radius: var(--border-radius);
+    cursor: default;
+}
+
+.Tag {
+    background-color: var(--tag-bg-color);
+    padding: 2px 8px;
+    color: var(--tag-text-color);
+    font-weight: var(--bold-font);
+    font-size: var(--small-text-size);
+
+    &.highlighted {
+        background-color: var(--color-accent-bg);
+    }
+    .HoverIconTag-hover {
+        display: none;
+        .Icon {
+            padding-left: 4px;
+            svg {
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+    &:hover {
+        .HoverIconTag-hover {
+            display: flex;
+            cursor: pointer;
+        }
+    }
+}
+
+.TagGroup {
+    overflow: hidden;
+
+    .Tag {
+        margin: 0;
+        border-radius: 0;
+    }
+}

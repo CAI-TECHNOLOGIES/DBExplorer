@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches enzyme snapshots matches snapshot - false 1`] = `
+<div
+  className="sc-bdfBwQ fQYtYk"
+  disabled={false}
+>
+  <input />
+</div>
+`;
+
+exports[`matches enzyme snapshots matches snapshot 1`] = `
+<div
+  className="sc-bdfBwQ fRRYli"
+>
+  <input />
+</div>
+`;
+
+exports[`matches test renderer snapshot serializes the styles 1`] = `
+<div
+  className="sc-bdfBwQ fRRYli"
+>
+  <input />
+</div>
+`;

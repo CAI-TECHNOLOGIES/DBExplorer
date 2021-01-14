@@ -1,0 +1,19 @@
+.UserSettingsMenu {
+    > div {
+        margin-bottom: 10px;
+    }
+    .UserSettingsMenu-setting {
+        white-space: nowrap;
+        width: 180px;
+    }
+    .control {
+        width: 180px;
+        select {
+            max-width: 160px;
+        }
+    }
+    .UserSettingsMenu-desc {
+        color: var(--light-text-color);
+        flex: 1 0;
+    }
+}

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches enzyme snapshots matches snapshot 1`] = `
+<styled.div
+  className=""
+>
+  <styled.span
+    key="0"
+  >
+    <span
+      className="flex-row flex1"
+    >
+      <span
+        className="Menu-text flex1"
+      >
+        test
+      </span>
+    </span>
+  </styled.span>
+</styled.div>
+`;
+
+exports[`matches test renderer snapshot serializes the styles 1`] = `
+<div
+  className="sc-bdfBwQ fQYtYk Menu"
+>
+  <span
+    className="sc-gsTCUz MenuItem"
+  >
+    <span
+      className="flex-row flex1"
+    >
+      <span
+        className="Menu-text flex1"
+      >
+        test
+      </span>
+    </span>
+  </span>
+</div>
+`;

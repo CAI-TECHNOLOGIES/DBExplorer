@@ -1,0 +1,51 @@
+.Dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .Dropdown-trigger {
+        cursor: pointer;
+        display: flex;
+    }
+
+    .Dropdown-menu {
+        left: 0;
+        min-width: 80px;
+        position: absolute;
+        top: 100%;
+        z-index: 20;
+        .Menu {
+            border: var(--border);
+            border-radius: var(--border-radius);
+        }
+    }
+
+    &.is-right {
+        .Dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+    }
+    &.is-up {
+        .Dropdown-menu {
+            bottom: 100%;
+            padding-bottom: 4px;
+            padding-top: initial;
+            top: auto;
+        }
+    }
+
+    &.Dropdown-nested-menu {
+        .Dropdown-menu {
+            top: -1px;
+            // this right now doesn't work
+            margin-left: 100%;
+        }
+    }
+    &.Dropdown-nested-menu.nested-right {
+        .Dropdown-menu {
+            margin-right: 100%;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches enzyme snapshots matches snapshot 1`] = `
+<div
+  className="sc-bdfBwQ iEvDpo Columns"
+>
+  <styled.div>
+    Test
+  </styled.div>
+  <styled.div>
+    Test
+  </styled.div>
+</div>
+`;
+
+exports[`matches test renderer snapshot serializes the styles 1`] = `
+<div
+  className="sc-bdfBwQ iEvDpo Columns"
+>
+  <div
+    className="sc-gsTCUz vuYDo Column"
+  >
+    Test
+  </div>
+  <div
+    className="sc-gsTCUz vuYDo Column"
+  >
+    Test
+  </div>
+</div>
+`;

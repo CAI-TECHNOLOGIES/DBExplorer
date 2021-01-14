@@ -1,0 +1,24 @@
+.TaskStatus {
+    overflow-x: hidden;
+    .TaskStatus-controls {
+        margin-bottom: 12px;
+        .SearchBar {
+            width: 360px;
+            margin-right: 8px;
+        }
+    }
+    .Table {
+        overflow-x: scroll;
+
+        .TaskStatus-error-message {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    }
+}
+
+.Modal {
+    .TaskStatus {
+        margin: 12px 24px;
+    }
+}

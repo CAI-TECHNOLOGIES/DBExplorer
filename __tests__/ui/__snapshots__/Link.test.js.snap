@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches enzyme snapshots matches snapshot 1`] = `
+<styled.a
+  href="https://test.com"
+  onMouseDown={[Function]}
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;
+
+exports[`matches test renderer snapshot serializes the styles 1`] = `
+<a
+  className="sc-bdfBwQ fQYtYk"
+  href="https://test.com"
+  onMouseDown={[Function]}
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+`;

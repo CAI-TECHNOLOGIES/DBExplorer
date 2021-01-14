@@ -1,0 +1,30 @@
+.QueryEngineStatusButton {
+    position: relative;
+
+    &.status-warning .IconButton {
+        color: var(--color-warning);
+    }
+
+    &.status-error .IconButton {
+        color: var(--color-false);
+    }
+}
+
+.QueryEngineStatusPopover {
+    .QueryEngineStatusPopover-refresh {
+        .Icon {
+            margin-right: 4px;
+            svg {
+                padding: 16%;
+            }
+        }
+    }
+    .QueryEngineStatusPopover-status {
+        ul {
+            cursor: pointer;
+            li:not(:last-child) {
+                padding-bottom: 8px;
+            }
+        }
+    }
+}

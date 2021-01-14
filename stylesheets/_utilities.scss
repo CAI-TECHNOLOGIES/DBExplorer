@@ -1,0 +1,182 @@
+// positioning
+.right-align {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.styled-background-div {
+    border-radius: var(--border-radius);
+    background-color: var(--light-bg-color);
+    padding: 15px;
+}
+
+// flex classes
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.horizontal-space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vertical-space-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fullscreen {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.break-flex {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.dh-hr {
+    background-color: var(--hr-color);
+    width: 100%;
+    margin: 0px 0px 0px 12px;
+}
+
+.transparent {
+    background-color: transparent;
+}
+
+/* force scrollbar to appear on Mac & -webkit (Chrome, Safari) despite user 'hide' preference */
+.force-scrollbar-x {
+    overflow-x: scroll !important;
+}
+.force-scrollbar-y {
+    overflow-y: scroll !important;
+}
+.force-scrollbar {
+    overflow: scroll !important;
+}
+
+.one-line-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin padding-classes {
+    $padding-size-options: 0, 2, 4, 8, 12, 16, 20, 24;
+    @each $size in $padding-size-options {
+        $padding: $size * 1px;
+
+        .p#{$size} {
+            padding: $padding;
+        }
+        .pl#{$size} {
+            padding-left: $padding;
+        }
+        .pr#{$size} {
+            padding-right: $padding;
+        }
+        .pt#{$size} {
+            padding-top: $padding;
+        }
+        .pb#{$size} {
+            padding-bottom: $padding;
+        }
+        .ph#{$size} {
+            padding-left: $padding;
+            padding-right: $padding;
+        }
+        .pv#{$size} {
+            padding-top: $padding;
+            padding-bottom: $padding;
+        }
+    }
+}
+
+@include padding-classes;
+
+@mixin margin-classes {
+    $margin-size-options: 0, 2, 4, 8, 12, 16, 20, 24, 36, 48;
+    @each $size in $margin-size-options {
+        $margin: $size * 1px;
+
+        .m#{$size} {
+            margin: $margin;
+        }
+        .ml#{$size} {
+            margin-left: $margin;
+        }
+        .mr#{$size} {
+            margin-right: $margin;
+        }
+        .mt#{$size} {
+            margin-top: $margin;
+        }
+        .mb#{$size} {
+            margin-bottom: $margin;
+        }
+        .mh#{$size} {
+            margin-left: $margin;
+            margin-right: $margin;
+        }
+        .mv#{$size} {
+            margin-top: $margin;
+            margin-bottom: $margin;
+        }
+    }
+}
+
+@include margin-classes;
+
+@mixin flex-classes {
+    $flex-size-options: 1, 2, 3, 4, 5;
+    @each $size in $flex-size-options {
+        .flex#{$size} {
+            flex: $size;
+        }
+    }
+}
+
+@include flex-classes;

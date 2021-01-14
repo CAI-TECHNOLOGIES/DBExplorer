@@ -1,0 +1,14 @@
+.ImpressionWidgetMenu {
+    min-width: 500px;
+    .ImpressionWidgetUsers,
+    .ImpressionWidgetTimeseries {
+        flex: 1;
+        width: 100%;
+    }
+
+    .ImpressionWidgetUsers {
+        .Table {
+            border-radius: 0;
+        }
+    }
+}

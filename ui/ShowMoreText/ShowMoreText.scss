@@ -1,0 +1,15 @@
+.ShowMoreText {
+    .ShowMoreText-click {
+        cursor: pointer;
+        white-space: nowrap;
+        text-decoration: underline;
+        display: inline;
+        margin-left: 4px;
+    }
+    &.is-list {
+        span {
+            margin-left: 0px;
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.DataTableViewMini {
+    display: flex;
+    flex-direction: column;
+    background: var(--light-bg-color);
+
+    .DataTableViewMini-header {
+        position: sticky;
+        top: 0;
+        background: var(--light-bg-color);
+    }
+
+    .DataTableViewMini-content {
+        overflow: scroll;
+    }
+    .DataTableTags {
+        margin-top: -4px;
+        margin-left: -2px;
+    }
+}

@@ -1,0 +1,15 @@
+.DebouncedInput {
+    &.flex {
+        display: flex;
+        input {
+            flex-grow: 1;
+        }
+    }
+
+    &.transparent {
+        input {
+            border: none;
+            background-color: transparent;
+        }
+    }
+}

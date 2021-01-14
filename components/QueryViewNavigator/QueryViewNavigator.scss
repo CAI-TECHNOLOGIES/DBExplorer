@@ -1,0 +1,78 @@
+@import './../../scss_variables.scss';
+
+.QueryViewNavigator {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .QueryViewFilter {
+        background-color: var(--light-bg-color);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        padding: 2px 0px 2px 8px;
+
+        .QueryViewFilter-tags,
+        .QueryViewFilter-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .QueryViewFilter-tags {
+            flex-wrap: wrap;
+            min-height: 100%;
+        }
+        .QueryViewFilter-icons {
+            .IconButton {
+                padding: 4px;
+                .feather-filter {
+                    padding: 1px;
+                }
+                .feather-refresh-cw {
+                    padding: 2px;
+                }
+            }
+        }
+    }
+
+    .scroll-wrapper {
+        flex: 1;
+        overflow-y: scroll;
+    }
+
+    .loading-queries-message {
+        padding: 36px 20px;
+    }
+
+    .no-result-message {
+        text-align: center;
+        font-size: var(--xlarge-text-size);
+        user-select: none;
+
+        padding: 16px;
+        font-weight: bold;
+        color: var(--border-color);
+    }
+}
+
+.QueryResult {
+    cursor: pointer;
+    border-bottom: var(--border);
+    padding: 4px 12px;
+
+    &:hover,
+    &.selected {
+        background-color: var(--hover-bg-color);
+    }
+
+    .exec-header {
+        white-space: nowrap;
+    }
+
+    .query-context {
+        @include ellipsis(3);
+        word-break: break-all;
+    }
+}

@@ -1,0 +1,15 @@
+.DataDocAccessRequestPermissionPicker {
+    .permission-text {
+        cursor: pointer;
+        justify-content: flex-end;
+
+        .caret-icon {
+            margin-right: 0.25rem;
+        }
+    }
+
+    .access-request-control-button {
+        padding-top: 0px;
+        padding-bottom: 5px;
+    }
+}

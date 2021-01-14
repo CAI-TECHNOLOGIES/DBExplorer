@@ -1,0 +1,28 @@
+.DataTableView {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .DataTableView-tabs {
+        z-index: 10;
+        position: sticky;
+        top: 0;
+        background-color: var(--bg-color);
+        margin: 0px 16px;
+
+        ul {
+            li {
+                padding: 12px 8px 8px 8px;
+            }
+        }
+    }
+
+    .DataTableView-content {
+        padding: 16px 24px;
+        flex: 1;
+
+        .Container {
+            height: 100%;
+        }
+    }
+}
