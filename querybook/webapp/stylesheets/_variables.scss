@@ -21,10 +21,10 @@ body {
     --color-invert-1: #202020; // BG-invert background
     --color-invert: #101010; // C-dark text
 
-    --color-pink: #f683ad;
-    --color-pink-dark: #e64680;
-    --color-pink-darkest: #cf004b;
-    --color-pink-light: #f9a8c5;
+    --color-pink: #83e3f6;
+    --color-pink-dark: #4aabd8;
+    --color-pink-darkest: #4aabd8;
+    --color-pink-light: #90cdf4;
     --color-pink-lightest: #fddce7;
     --color-pink-lightest-0: #feedf3;
     --color-pink-transp-lightest: rgba(249, 168, 197, 0.4);
@@ -213,13 +213,13 @@ body {
 }
 
 body.dark-theme {
-    --color-primary: #302e2f; // BG-background
-    --color-primary-0: #3b393a; // BG-hover background
+    --color-primary: #1A202C; // BG-background
+    --color-primary-0: #171923; // BG-hover background
     --color-primary-1: #454445; // BG-hover background
-    --color-primary-2: #504f50; // BG-light background
-    --color-primary-3: #5b595a; // C-icon
-    --color-primary-4: #656465; // BG-border
-    --color-primary-5: #706f70; // C-hover content
+    --color-primary-2: #2D3748; // BG-light background
+    --color-primary-3: #354052; // C-icon
+    --color-primary-4: #2D3748; // BG-border
+    --color-primary-5: #2D3748; // C-hover content
 
     --color-invert-5: #afafaf; // C-light text
     --color-invert-4: #bfbfbf; // BG-modal background
