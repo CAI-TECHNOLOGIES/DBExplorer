@@ -49,10 +49,18 @@ export const UserMenu: React.FC<IUserMenuProps> = ({
             isModal: true,
         });
     }, []);
+
+    const onStorageChange = () => {
+        setTheme(localStorage.getItem("chakra-ui-color-mode") === 'dark' ? 'dark' : 'default')
+    }
+
     useEffect(()=>{
-        const localTheme = localStorage.getItem('chakra-ui-color-mode')
-        localTheme==="dark" ? setTheme(localTheme) : setTheme('default')
-    },[localStorage.getItem('chakra-ui-color-mode')])
+        window.addEventListener("storage", onStorageChange, false);
+        return () => window.removeEventListener("storage", onStorageChange)
+    }, [])
+
+
+
     const userInfo = useSelector((state: IStoreState) => state.user.myUserInfo);
     const theme = useSelector(
         (state: IStoreState) => state.user.computedSettings['theme']

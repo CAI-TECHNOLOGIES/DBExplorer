@@ -99,12 +99,12 @@ const DefaultLanding: React.FC = ({ children }) => {
 
     const LandingFooter = (
         <div className="Landing-bottom">
-            <Columns>
+            {/* <Columns>
                 <Column>
                     <div className="Landing-section-title">Did you know?</div>
                     <p>{hint}</p>
                 </Column>
-            </Columns>
+            </Columns> */}
             <Columns>
                 <Column>
                     <div className="Landing-section-title">Recent DataDocs</div>
