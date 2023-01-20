@@ -39,11 +39,11 @@ export const InfoMenuButton: React.FunctionComponent = () => {
     const getPanelDOM = () => {
         const panelContent = (
             <Menu>
-                <MenuInfoItem>
-                    Querybook v<QuerybookVersion />
-                </MenuInfoItem>
-                <MenuDivider />
-                <MenuItem
+                {/* <MenuInfoItem> */}
+                    {/* Querybook v<QuerybookVersion /> */}
+                {/* </MenuInfoItem> */}
+                {/* <MenuDivider /> */}
+                {/* <MenuItem
                     onClick={() => {
                         navigateWithinEnv('/changelog/', {
                             isModal: true,
@@ -53,7 +53,7 @@ export const InfoMenuButton: React.FunctionComponent = () => {
                 >
                     Change Logs
                     {notification ? <MenuItemPing /> : null}
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                     onClick={() =>
                         navigateWithinEnv('/info/shortcut/', {
@@ -104,6 +104,7 @@ export const InfoMenuButton: React.FunctionComponent = () => {
         );
     };
     return (
+        <>
         <div className="InfoMenuButton">
             <IconButton
                 className="InfoMenuButton-button"
@@ -123,5 +124,6 @@ export const InfoMenuButton: React.FunctionComponent = () => {
             />
             {showPanel ? getPanelDOM() : null}
         </div>
+        </>
     );
 };

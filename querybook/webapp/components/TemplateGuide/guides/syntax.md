@@ -13,8 +13,7 @@ bar = '{{ foo }} world'
 ```
 
 When `bar` is used in templating, it is actually rendered to 'hello world'. This is applicable for predefined
-variables such as today and yesterday as well. If there is a recursive references in variable, then Querybook
-will throw template render errors.
+variables such as today and yesterday as well. If there is a recursive references in variable, then template render errors will be thrown.
 
 ## Using variables
 

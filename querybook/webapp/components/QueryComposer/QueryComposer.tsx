@@ -9,7 +9,6 @@ import React, {
 } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { DataDocTemplateInfoButton } from 'components/DataDocTemplateButton/DataDocTemplateInfoButton';
 import { DataDocTemplateVarForm } from 'components/DataDocTemplateButton/DataDocTemplateVarForm';
 import { detectVariableType } from 'components/DataDocTemplateButton/helpers';
@@ -795,6 +794,15 @@ const QueryComposer: React.FC = () => {
             transpilerName={transpilerConfig.transpilerName}
         />
     ) : null;
+
+    const params = new URLSearchParams(document.location.search).get('q')
+    useEffect(()=>{
+        queryEngines.map((itm)=>{
+            if(params===itm.name){
+                setEngineId(itm.id)
+            }
+        })
+    },[engine])
 
     return (
         <FullHeight flex={'column'} className="QueryComposer">
