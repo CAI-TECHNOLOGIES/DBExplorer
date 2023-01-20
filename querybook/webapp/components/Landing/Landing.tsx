@@ -92,8 +92,9 @@ const DefaultLanding: React.FC = ({ children }) => {
                 <div className="Landing-subtitle">
                     Welcome back to Querybook
                 </div>
-            </div> */}<div>
-            <div className="Landing-greeting" style={{paddingBottom:"20px"}}>
+            </div> */}
+        <div>
+            <div className="Landing-greeting" style={{paddingBottom:"20px",fontSize:"38px"}}>
                     What is DBExplorer
                 </div>
             <div className="Landing-subtitle" style={{paddingTop:"20px" ,paddingBottom:"20px"}}>
