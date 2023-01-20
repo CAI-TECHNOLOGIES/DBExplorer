@@ -13,13 +13,13 @@ export const DataDocLoading: React.FC = () => {
 
     return (
         <div className="datadoc-loading flex-center">
-            <div className="flex-column">
+            {/* <div className="flex-column">
                 <LoadingIcon className="mb16" />
                 <Title color="light">Loading DataDoc</Title>
                 <Icon name="Zap" className="mt16 mb8" color="accent" />
                 <Subtitle>Did you know?</Subtitle>
                 <div className="mt8">{hint}</div>
-            </div>
+            </div> */}
         </div>
     );
 };

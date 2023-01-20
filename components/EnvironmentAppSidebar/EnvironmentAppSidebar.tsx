@@ -146,10 +146,10 @@ export const EnvironmentAppSidebar: React.FunctionComponent = () => {
     const contentDOM = (
         <>
             <div className="EnvironmentAppSidebar-content">
-                <div className={envPickerClassName}>
+                {/* <div className={envPickerClassName}>
                     {environmentPickerSection}
-                </div>
-                <div className="sidebar-content-main">
+                </div> */}
+                <div className="sidebar-content-main" style={{"overflow":"auto"}}>
                     <EntitySidebar
                         selectedEntity={entity}
                         onSelectEntity={handleEntitySelect}
