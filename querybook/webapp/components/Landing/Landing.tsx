@@ -85,14 +85,14 @@ const DefaultLanding: React.FC = ({ children }) => {
 
     const LandingHeader = (
         <div className="Landing-top horizontal-space-between">
-            <div>
+            {/* <div>
                 <div className="Landing-greeting">
                     Hi {titleize(userInfo.fullname || userInfo.username)},
                 </div>
                 <div className="Landing-subtitle">
                     Welcome back to Querybook
                 </div>
-            </div>
+            </div> */}
             <QuerybookSidebarUIGuide />
         </div>
     );

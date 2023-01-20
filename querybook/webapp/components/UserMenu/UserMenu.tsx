@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TokenCreation } from 'components/Token/TokenCreation';
@@ -49,7 +49,10 @@ export const UserMenu: React.FC<IUserMenuProps> = ({
             isModal: true,
         });
     }, []);
-
+    useEffect(()=>{
+        const localTheme = localStorage.getItem('chakra-ui-mode')
+        setTheme(localTheme)
+    },[localStorage.getItem('chakra-ui-mode')])
     const userInfo = useSelector((state: IStoreState) => state.user.myUserInfo);
     const theme = useSelector(
         (state: IStoreState) => state.user.computedSettings['theme']
@@ -124,7 +127,7 @@ export const UserMenu: React.FC<IUserMenuProps> = ({
 
     return (
         <>
-            <span
+            {/* <span
                 className="UserMenu flex-column"
                 ref={selfRef}
                 onClick={toggleUserMenuPopover}
@@ -134,7 +137,7 @@ export const UserMenu: React.FC<IUserMenuProps> = ({
                 <IconButton icon="Settings" title="Settings" />
             </span>
             {tokenCreationModalDOM}
-            {userSettingsPopover}
+            {userSettingsPopover} */}
         </>
     );
 };
