@@ -50,9 +50,9 @@ export const UserMenu: React.FC<IUserMenuProps> = ({
         });
     }, []);
     useEffect(()=>{
-        const localTheme = localStorage.getItem('chakra-ui-mode')
-        setTheme(localTheme)
-    },[localStorage.getItem('chakra-ui-mode')])
+        const localTheme = localStorage.getItem('chakra-ui-color-mode')
+        localTheme==="dark" ? setTheme(localTheme) : setTheme('default')
+    },[localStorage.getItem('chakra-ui-color-mode')])
     const userInfo = useSelector((state: IStoreState) => state.user.myUserInfo);
     const theme = useSelector(
         (state: IStoreState) => state.user.computedSettings['theme']
