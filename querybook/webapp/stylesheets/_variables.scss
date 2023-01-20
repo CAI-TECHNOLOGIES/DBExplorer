@@ -21,12 +21,12 @@ body {
     --color-invert-1: #202020; // BG-invert background
     --color-invert: #101010; // C-dark text
 
-    --color-pink: #83e3f6;
-    --color-pink-dark: #4aabd8;
-    --color-pink-darkest: #4aabd8;
+    --color-pink: white;
+    --color-pink-dark: #4299e1;
+    --color-pink-darkest: #4299e1;
     --color-pink-light: #90cdf4;
     --color-pink-lightest: #fddce7;
-    --color-pink-lightest-0: #feedf3;
+    --color-pink-lightest-0: #4299e1;
     --color-pink-transp-lightest: rgba(249, 168, 197, 0.4);
     --color-pink-transp-lightest-0: rgba(249, 168, 197, 0.2);
 
@@ -66,10 +66,10 @@ body {
     --color-green-transp-lightest: rgba(219, 234, 163, 0.4);
     --color-green-transp-lightest-0: rgba(219, 234, 163, 0.2);
 
-    --color-blue: #85d0ce;
+    --color-blue: #2c5282;
     --color-blue-dark: #34657f;
     --color-blue-darkest: #19313f;
-    --color-blue-light: #c5e2ee;
+    --color-blue-light: #1A202C;
     --color-blue-lightest: #e8f3f8;
     --color-blue-lightest-0: #f4f9fb;
     --color-blue-transp-lightest: rgba(197, 226, 238, 0.4);
@@ -254,7 +254,7 @@ body.dark-theme {
     --color-accent-darkest: var(--color-blue-lightest);
     --color-accent-light: #34657f;
     --color-accent-lightest: #254a5d;
-    --color-accent-lightest-0: #13252f;
+    --color-accent-lightest-0: #90cdf4;
     --color-accent-transp-lightest: var(--color-blue-transp-lightest);
     --color-accent-transp-lightest-0: var(--color-blue-transp-lightest-0);
 
