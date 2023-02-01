@@ -27,7 +27,7 @@ export const EntitySidebar: React.FunctionComponent<IEntitySidebarProps> =
     React.memo(({ selectedEntity, onSelectEntity }) => {
         const environment = useSelector(currentEnvironmentSelector);
         const queryMetastores = useSelector(queryMetastoresSelector);
-
+        const param = new URLSearchParams(document.location?.search)?.get('q')
         return (
             <div className="EntitySidebar">
                 <div className="apps-list flex-column">
@@ -54,7 +54,7 @@ export const EntitySidebar: React.FunctionComponent<IEntitySidebarProps> =
                                     />
                                 </Link>
                                 <SearchContainer />
-                                <Link to={`/${environment.name}/adhoc/`}>
+                                <Link to={param===null? `/${environment.name}/adhoc` :`/${environment.name}/adhoc/?q=${param}`}>
                                     <IconButton
                                         icon="Edit"
                                         tooltip={'Adhoc Query'}

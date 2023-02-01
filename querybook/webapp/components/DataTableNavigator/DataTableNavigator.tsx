@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo,useState } from 'react';
 import { useDrag } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory,useLocation } from 'react-router-dom';
 
 import { TableUploaderButton } from 'components/TableUploader/TableUploaderButton';
 import {
@@ -141,15 +141,29 @@ export const DataTableNavigator: React.FC<IDataTableNavigatorProps> = ({
             resetSearch();
         }
     }, [noMetastore]);
-
+    const [params,setParams] = useState(null)
+    const location = useLocation()
     useEffect(() => {
         if (
             queryMetastores.length > 0 &&
             !queryMetastores.find((metastore) => metastore.id === metastoreId)
         ) {
-            selectMetastore(queryMetastores[0].id);
+            selectMetastore(params);
         }
-    }, [queryMetastores, metastoreId]);
+
+    }, [queryMetastores, metastoreId,params]);
+
+
+    useEffect(()=>{
+
+
+        const queryParams = new URLSearchParams(location.search)
+        
+        var singleValue = queryParams.get('q')
+        if(!singleValue) {selectMetastore(queryMetastores[0]?.id); return};
+        queryMetastores.map((meta)=>{if(meta.name===singleValue){singleValue=meta.id}})
+        setParams(singleValue)
+    },[])
 
     const handleMetastoreChange = useCallback(
         (evt: React.ChangeEvent<HTMLSelectElement>) => {
@@ -200,12 +214,13 @@ export const DataTableNavigator: React.FC<IDataTableNavigatorProps> = ({
     );
 
     const metastorePicker = (
-        <div className="navigator-metastore-picker horizontal-space-between pt12 pr8 pl4">
-            <Select
+        <div className="navigator-metastore-picker horizontal-space-between pt4 pr8 pl4">
+            {params===null? <Select
                 className="small"
                 value={metastoreId}
                 onChange={handleMetastoreChange}
                 transparent
+                
             >
                 {makeSelectOptions(
                     queryMetastores.map((metastore) => ({
@@ -213,7 +228,9 @@ export const DataTableNavigator: React.FC<IDataTableNavigatorProps> = ({
                         key: metastore.id,
                     }))
                 )}
-            </Select>
+            </Select>:
+            <></>}
+           
 
             <TableUploaderButton
                 size={'18px'}
