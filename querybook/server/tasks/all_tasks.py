@@ -12,6 +12,10 @@ from .run_sample_query import run_sample_query
 from .dummy_task import dummy_task
 from .update_metastore import update_metastore
 from .sync_elasticsearch import sync_elasticsearch
+from .sync_project_environment import (
+    sync_project_user_environment,
+    sync_project_connections,
+)
 from .run_datadoc import run_datadoc
 from .delete_mysql_cache import delete_mysql_cache
 from .poll_engine_status import poll_engine_status
@@ -33,6 +37,8 @@ run_query_task
 dummy_task
 update_metastore
 sync_elasticsearch
+sync_project_connections
+sync_project_user_environment
 run_datadoc
 delete_mysql_cache
 poll_engine_status
