@@ -3,6 +3,15 @@ from typing import Optional
 from .local_typing import ACLControl, MetastoreData, QueryEngineData
 
 
+def _convert_mysql_connection_uri(connection_uri: str) -> str:
+    """Convert to appropriate mysql connection string for sqlalchemy"""
+
+    if connection_uri.startswith("mysql://"):
+        return "".join(["mysql+pymysql://"] + connection_uri.split("://")[1:])
+
+    return connection_uri
+
+
 def mysql_connection_query_executor_mapper(
     name: str,
     connection_uri: str,
@@ -16,7 +25,7 @@ def mysql_connection_query_executor_mapper(
         "description": description,
         "executor": "sqlalchemy",
         "executor_params": {
-            "connection_string": connection_uri,
+            "connection_string": _convert_mysql_connection_uri(connection_uri),
             "connect_args": [],
         },
         "language": "mysql",
@@ -40,7 +49,7 @@ def mysql_connection_metastore_mapper(
         "acl_control": acl_control,
         "loader": "SqlAlchemyMetastoreLoader",
         "metastore_params": {
-            "connection_string": connection_uri,
+            "connection_string": _convert_mysql_connection_uri(connection_uri),
             "connect_args": [],
         },
     }

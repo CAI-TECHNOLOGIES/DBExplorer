@@ -3,6 +3,15 @@ from typing import Optional
 from .local_typing import ACLControl, MetastoreData, QueryEngineData
 
 
+def _convert_postgres_connection_uri(connection_uri: str) -> str:
+    """Convert to appropriate postgres connection string for sqlalchemy"""
+
+    if connection_uri.startswith("postgres://"):
+        return "".join(["postgresql+psycopg2://"] + connection_uri.split("://")[1:])
+
+    return connection_uri
+
+
 def postgres_connection_metadata_mapper(
     name: str,
     connection_uri: str,
@@ -15,7 +24,7 @@ def postgres_connection_metadata_mapper(
         "acl_control": acl_control,
         "loader": "SqlAlchemyMetastoreLoader",
         "metastore_params": {
-            "connection_string": connection_uri,
+            "connection_string": _convert_postgres_connection_uri(connection_uri),
             "connect_args": [],
         },
     }
@@ -34,7 +43,7 @@ def postgres_connection_query_executor_mapper(
         "description": description,
         "executor": "sqlalchemy",
         "executor_params": {
-            "connection_string": connection_uri,
+            "connection_string": _convert_postgres_connection_uri(connection_uri),
             "connect_args": [],
         },
         "language": "postgresql",
