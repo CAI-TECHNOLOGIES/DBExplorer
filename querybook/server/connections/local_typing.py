@@ -33,7 +33,7 @@ class QueryEngineData(TypedDict):
     # name:
     name: str
     description: Optional[str]
-    langauge: QueryEngineLiteral
+    language: QueryEngineLiteral
     executor: str  # TODO: map it to the allowed literal types.
     executor_params: ExecutorParams
     feature_param: Dict

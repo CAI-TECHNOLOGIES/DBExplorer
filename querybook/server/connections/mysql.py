@@ -19,7 +19,7 @@ def mysql_connection_query_executor_mapper(
             "connection_string": connection_uri,
             "connect_args": [],
         },
-        "langauge": "mysql",
+        "language": "mysql",
         "feature_param": {
             "status_checker": "ConnectionChecker",
             "upload_exporter": "SqlalchemyExporter",

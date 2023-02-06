@@ -37,7 +37,7 @@ def postgres_connection_query_executor_mapper(
             "connection_string": connection_uri,
             "connect_args": [],
         },
-        "langauge": "postgresql",
+        "language": "postgresql",
         "feature_param": {
             "status_checker": "ConnectionChecker",
             "upload_exporter": "SqlalchemyExporter",

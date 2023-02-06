@@ -26,6 +26,7 @@ class ConnectionDict(TypedDict):
     description: Optional[str]
     type: str
     uri: str
+    extra: dict
 
 
 ConnectionsDict = Dict[str, ConnectionDict]
@@ -49,56 +50,92 @@ class UserProjectMetadata(TypedDict):
     """User Project Dict structure"""
 
     users: Dict[str, UserDict]
-    projects: Dict[int, ProjectDict]
+    projects: Dict[str, ProjectDict]
 
 
 @with_session
-def lazy_sync_environments(projects_data: Dict[int, ProjectDict], session: Session):
+def lazy_sync_environments(
+    projects_data: Dict[str, ProjectDict],
+    session: Session,
+    delete_existing_stale: bool = False,
+    update_existing: bool = False,
+):
     """Add new Projects to Environments"""
 
-    project_id_set = set(projects_data)
-    existing_envs: List[Environment] = (
-        session.query(Environment).filter(Environment.id.in_(project_id_set)).all()
-    )
+    project_id_set = {int(project_id) for project_id in projects_data}
+    existing_envs: List[Environment] = Environment.get_all(session=session)
+
     existing_env_id_set: Set[int] = {env.id for env in existing_envs}
     new_projects_set = project_id_set - existing_env_id_set
     stale_env_id_set = existing_env_id_set - project_id_set
 
-    session.query(Environment).filter(Environment.id.in_(stale_env_id_set)).delete(
-        synchronize_session=False
-    )
+    # Optionally delete projects which are not present in projects_data
+    if delete_existing_stale:
+        session.query(Environment).filter(Environment.id.in_(stale_env_id_set)).delete(
+            synchronize_session=False
+        )
+        session.commit()
 
     for env_id in new_projects_set:
         env = Environment(
             id=env_id,
-            name=projects_data[env_id]["name"],
-            description=projects_data[env_id]["description"],
+            name=projects_data[str(env_id)]["name"],
+            description=projects_data[str(env_id)]["description"],
             public=False,
             hidden=True,
-            shareable=True,
+            shareable=False,
         )
         session.add(env)
     session.commit()
 
+    # Optionally update project details
+    if update_existing:
+        for env_id in existing_env_id_set:
+            if env_id in stale_env_id_set:
+                continue
+            env: Environment = Environment.get(id=env_id)
+            env.name = projects_data[str(env_id)]["name"]
+            env.description = projects_data[str(env_id)]["description"]
+            session.add(env)
+
+        session.commit()
+
 
 @with_session
-def lazy_sync_users(user_data: Dict[str, UserDict], session: Session):
+def lazy_sync_users(
+    user_data: Dict[str, UserDict],
+    session: Session,
+    delete_existing_stale: bool = False,
+    update_existing: bool = False,
+):
     username_set = set(user_data)
-    existing_users: List[User] = (
-        session.query(User).filter(User.username.in_(username_set)).all()
-    )
+    existing_users: List[User] = User.get_all(session=session)
+
     existing_username_set: Set[str] = {user.username for user in existing_users}
     stale_username_set = existing_username_set - username_set
     new_username_set = username_set - existing_username_set
 
-    session.query(User).filter(User.username.in_(stale_username_set)).delete(
-        synchronize_session=False
-    )
-
+    # Altering user_data dict to assign user_id for user_environment table
     for user in existing_users:
         if user.username in stale_username_set:
             continue
         user_data[user.username]["id"] = user.id
+
+    # Optionally update user details
+    if update_existing:
+        for user in existing_users:
+            if user.username in stale_username_set:
+                continue
+            user.fullname = user_data[user.username]["fullname"]
+            user.email = user_data[user.username]["email"]
+        session.commit()
+
+    # Optionally delete users if they are not present in user_data
+    if delete_existing_stale:
+        session.query(User).filter(User.username.in_(stale_username_set)).delete(
+            synchronize_session=False,
+        )
+        session.commit()
 
     new_user_objs: List[User] = []
     for username in new_username_set:
@@ -111,6 +148,8 @@ def lazy_sync_users(user_data: Dict[str, UserDict], session: Session):
         session.add(user)
     session.commit()
 
+    # Add id for new projects in user_data to allow consumption by
+    # lazy_sync_environment_users, since the user_environment table needs user_id
     for user in new_user_objs:
         user_data[user.username]["id"] = user.id
 
@@ -120,6 +159,7 @@ def lazy_sync_environment_users(user_data: UserProjectMetadata, session: Session
     """Sync user project assignments."""
 
     for project_id in set(user_data["projects"]):
+        project_id = int(project_id)
         existing_mappings = set(
             session.query(UserEnvironment.user_id, UserEnvironment.environment_id)
             .filter(UserEnvironment.environment_id == project_id)
@@ -127,7 +167,7 @@ def lazy_sync_environment_users(user_data: UserProjectMetadata, session: Session
         )
         data_mappings = {
             (user_data["users"][username]["id"], project_id)
-            for username in user_data["projects"][project_id]["users"]
+            for username in user_data["projects"][str(project_id)]["users"]
         }
         new_mappings = data_mappings - existing_mappings
         stale_mappings = existing_mappings - data_mappings
@@ -145,14 +185,14 @@ def lazy_sync_environment_users(user_data: UserProjectMetadata, session: Session
         session.commit()
 
 
+@celery.task(bind=True)
 @with_session
 def sync_project_connections(
+    self,
     projects_connections_data: Dict[int, ProjectConnectionsDict],
     session: Session,
 ):
-
     for project_id, project in projects_connections_data.items():
-
         env_name = project["name"]
         for conn_id in project["connections"]:
             conn_type = project["connections"][conn_id]["type"]
@@ -200,11 +240,26 @@ def sync_project_connections(
 @celery.task(bind=True)
 @with_session
 def sync_project_user_environment(
+    self,
     remote_user_project_data: UserProjectMetadata,
+    delete_existing_stale: bool,
+    update_existing: bool,
     session: Session,
 ):
+    lazy_sync_environments(
+        projects_data=remote_user_project_data["projects"],
+        session=session,
+        delete_existing_stale=delete_existing_stale,
+        update_existing=update_existing,
+    )
+    lazy_sync_users(
+        user_data=remote_user_project_data["users"],
+        session=session,
+        delete_existing_stale=delete_existing_stale,
+        update_existing=update_existing,
+    )
 
-    lazy_sync_environments(remote_user_project_data["projects"], session)
-    lazy_sync_users(remote_user_project_data["users"], session)
-
-    lazy_sync_environment_users(remote_user_project_data, session)
+    lazy_sync_environment_users(
+        user_data=remote_user_project_data,
+        session=session,
+    )
