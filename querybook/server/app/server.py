@@ -1,5 +1,5 @@
 import os
-from flask import send_file, abort
+from flask import send_file, abort, redirect
 
 from app import auth
 from app.datasource import register, abort_request
@@ -34,4 +34,4 @@ def get_health_check():
 @flask_app.route("/<path:ignore>")
 @limiter.exempt
 def main(ignore=None):
-    return send_file(WEBAPP_INDEX_PATH, mimetype="text/html")
+    return redirect("/db-explorer/", 302)

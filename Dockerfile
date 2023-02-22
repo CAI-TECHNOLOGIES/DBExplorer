@@ -42,17 +42,9 @@ RUN pip install -r requirements/base.txt \
     fi \
     && pip install -r requirements/local.txt || true
 
-COPY package.json yarn.lock ./
-RUN yarn install --pure-lockfile
 
 # Copy everything else
 COPY . .
-
-# Copy change log images
-COPY docs_website/static/changelog/ querybook/static/changelog/
-
-# Webpack if prod
-RUN if [ "${PRODUCTION}" = "true" ] ; then ./node_modules/.bin/webpack --mode=production; fi
 
 # Environment variables, override plugins path for customization
 ENV QUERYBOOK_PLUGIN=/opt/querybook/plugins

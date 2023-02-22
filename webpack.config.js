@@ -21,10 +21,10 @@ function getDevServerSettings(env) {
         hot: true,
 
         historyApiFallback: {
-            index: '/build/index.html',
+            index: '/db-explorer/build/index.html',
         },
         proxy: {
-            '/ds/*': {
+            '/db-explorer-backend/ds/*': {
                 target: QUERYBOOK_UPSTREAM,
                 changeOrigin: true,
                 secure: false,
@@ -32,13 +32,28 @@ function getDevServerSettings(env) {
                     // can add custom headers here
                     // "X-name": "value"
                 },
-                pathRewrite: function (req) {},
+                pathRewrite: function (path, req) {
+                    var replacedPath = path;
+                    replacedPath = replacedPath.replace(
+                        '/db-explorer-backend/',
+                        '/'
+                    );
+                    return replacedPath;
+                },
                 bypass: function (req, res, proxyOptions) {},
             },
-            '/-/socket.io/*': {
+            '/db-explorer-backend/-/socket.io/*': {
                 target: QUERYBOOK_UPSTREAM,
                 changeOrigin: true,
                 ws: true,
+                pathRewrite: function (path, req) {
+                    var replacedPath = path;
+                    replacedPath = replacedPath.replace(
+                        '/db-explorer-backend/',
+                        '/'
+                    );
+                    return replacedPath;
+                },
             },
             '/static/*': {
                 target: QUERYBOOK_UPSTREAM,
@@ -49,7 +64,7 @@ function getDevServerSettings(env) {
                 changeOrigin: true,
             },
         },
-        publicPath: '/build/',
+        publicPath: '/db-explorer/build/',
         onListening: (server) => {
             let firstTimeBuildComplete = true;
             const port = server.listeningApp.address().port;
@@ -131,7 +146,7 @@ module.exports = (env, options) => {
         output: {
             filename: '[name].[fullhash].js',
             path: OUTPUT_PATH,
-            publicPath: '/build/',
+            publicPath: '/db-explorer/build/',
             clean: true,
         },
 
@@ -229,7 +244,7 @@ module.exports = (env, options) => {
             new webpack.DefinePlugin({
                 __VERSION__: JSON.stringify(require('./package.json').version),
                 __APPNAME__: JSON.stringify(appName),
-                __ENVIRONMENT__: JSON.stringify(mode)
+                __ENVIRONMENT__: JSON.stringify(mode),
             }),
             new webpack.IgnorePlugin({
                 resourceRegExp: /^\.\/locale$/,
