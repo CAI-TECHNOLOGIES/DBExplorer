@@ -6,3 +6,5 @@ REDIS_URL: redis://redis:6379/0
 ELASTICSEARCH_HOST: elasticsearch:9200
 # Uncomment for email
 # EMAILER_CONN: dockerhostforward
+
+AUTH_BACKEND: custom_auth.header_auth
