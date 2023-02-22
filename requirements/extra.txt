@@ -3,7 +3,7 @@
 # You can also include it in local.txt for local development
 
 # Engines
--r engine/bigquery.txt
+# -r engine/bigquery.txt
 -r engine/druid.txt
 -r engine/hive.txt
 -r engine/presto.txt
