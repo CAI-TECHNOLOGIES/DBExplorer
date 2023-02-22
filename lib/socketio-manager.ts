@@ -33,7 +33,7 @@ const openSocketManager = new OpenSocketManager();
 
 const socketIOConfig = {
     secure: true,
-    path: '/-/socket.io',
+    path: '/db-explorer-backend/-/socket.io',
     transports: ['websocket'],
 };
 
