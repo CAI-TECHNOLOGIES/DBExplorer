@@ -1,0 +1,44 @@
+faqs:
+    - q: 'My queries failed. What do I do?'
+      a: |
+          <p>
+          Check first if the syntax of the query is correct.
+          Otherwise please check the line message of the error
+          message. There are two common messages:
+          </p>
+          <ul>
+          <li>
+              <u className="mr4">
+                  <i className="mr8">Error from Query Engine</i>
+              </u>
+              indicates the error is a run time error from the
+              query engine. Please check with the maintainer of
+              the said engine.
+          </li>
+          </ul>
+    - q: 'My DataDoc is not saving. What should I do?'
+      a: |
+          <p>
+            When DataDoc is autosaving, there should be a
+            spinning loading icon on the top right. First verify
+            if it is an issue with websockets, there are two
+            possible indicators:
+            <ul>
+                <li>A red 🔗 icon below the saving icon</li>
+                <li>
+                    Notifications with the message <u><i>Insert cell
+                    failed, reason: TypeError: Cannot read
+                    property <code>e</code></i></u> shows up
+                </li>
+            </ul>
+          </p>
+    - q: 'Is there a way to clone a Query Cell and its executions?'
+      a: |
+          <p>
+              You can copy/cut the cell by hovering over the ⋮ menu on the right and paste the copied cell. Pasting the cell in a doc will carry over all of its query execution history.
+          </p>
+    - q: 'How do I schedule a DataDoc?'
+      a: |
+          <p>
+              You can add a schedule to a DataDoc by clicking on the 🕑 button on the bottom right. A scheduled DataDoc will run the query cells sequentially from the first query cell to the last query cell and would stop if any of the query cell failed to execute. You can configure the schedule to automatically export the query result with a given exporter.
+          </p>

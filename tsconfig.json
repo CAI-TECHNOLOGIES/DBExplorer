@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "dist/webapp/",
+        "noImplicitAny": false,
+        "module": "es2020",
+        "moduleResolution": "Node",
+        "target": "es6",
+        "sourceMap": true,
+        "jsx": "react",
+        "lib": ["dom", "es2017", "esnext", "es2018.promise"],
+        "suppressImplicitAnyIndexErrors": true,
+        "baseUrl": "./querybook/webapp/",
+        "paths": {
+            "config/*": ["../config/*"]
+        },
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true
+    },
+    "include": ["querybook/webapp/**/*"],
+    "exclude": ["node_modules"]
+}

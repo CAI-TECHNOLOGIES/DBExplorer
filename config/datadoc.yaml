@@ -1,0 +1,96 @@
+cell_types:
+    text:
+        key: 'text'
+        name: 'Text'
+        icon: 'Type'
+        meta:
+            collapsed: false
+        meta_default:
+            collapsed: false
+    query:
+        key: 'query'
+        name: 'Query'
+        icon: 'Code'
+        meta:
+            title: '' # can be any string
+            engine: 0 # Engine Id
+            collapsed: false
+            query_collapsed: false
+            limit: 0
+        meta_default:
+            title: ''
+            engine: null
+            collapsed: false
+            query_collapsed: false
+            limit: 0
+    chart:
+        key: 'chart'
+        name: 'Chart'
+        icon: 'Activity'
+        meta:
+            title: ''
+            data:
+                source_type: ''
+                source_ids: [0]
+                transformations:
+                    format:
+                        agg_col: 0
+                        series_col: 1
+                        value_cols: [2]
+                    aggregate: false
+                    switch: false
+                limit: 1000 # Keep this the same as StatementExecutionResultSizes[0]
+            chart:
+                type: ''
+                x_axis:
+                    col_idx: 0
+                    label: ''
+                    scale: ''
+                    format: ''
+                    min: 0.0
+                    max: 0.0
+                    sort:
+                        idx: 0
+                        asc: true
+                y_axis:
+                    label: ''
+                    scale: ''
+                    format: ''
+                    min: 0.0
+                    max: 0.0
+                    stack: false
+                    series:
+                        0:
+                            source: 0
+                            hidden: false
+                            color: 0
+                            agg_type: 'sum'
+                z_axis:
+                    col_idx: 2
+            visual:
+                legend_position: ''
+                legend_display: true
+                connect_missing: false
+                values:
+                    source: 0 # Can be 0:'value' | 1:'series'
+                    display: 0
+                    position: 'center'
+                    alignment: 'center'
+                size: 'auto' # Can be one of 'sm' | 'md' | 'lg' | 'auto'
+            collapsed: false
+        meta_default:
+            title: ''
+            data:
+                source_type: 'cell_above'
+                transformations:
+                    format: {}
+            chart:
+                type: 'line'
+                x_axis:
+                    col_idx: 0
+                    label: ''
+                y_axis:
+                    label: ''
+                    series: {}
+            visual: {}
+            collapsed: false
