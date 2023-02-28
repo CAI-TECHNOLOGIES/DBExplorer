@@ -10,7 +10,7 @@ const config = {
     ],
     setupFiles: ['<rootDir>/__tests__/setup/setup.js'],
     testPathIgnorePatterns: ['<rootDir>/__tests__/setup/'],
-    rootDir: './querybook/webapp/',
+    rootDir: './webapp/',
     modulePaths: ['<rootDir>'],
     globalSetup: '<rootDir>/__tests__/setup/jest-global-setup.js',
     globals: {

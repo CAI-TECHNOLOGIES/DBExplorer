@@ -6,10 +6,10 @@
     "scripts": {
         "test": "jest",
         "build": "npx webpack --mode=production",
-        "storybook": "STORYBOOK_USER=${USER} start-storybook -s ./querybook/static:/static -p 6006",
+        "storybook": "STORYBOOK_USER=${USER} start-storybook -s ./static:/static -p 6006",
         "build-storybook": "build-storybook",
         "dev": "webpack serve --mode=development --open --hot",
-        "lint": "eslint 'querybook/webapp/*/**/*.{ts,tsx}' --quiet --fix",
+        "lint": "eslint 'webapp/*/**/*.{ts,tsx}' --quiet --fix",
         "tsc-check": "tsc --noEmit"
     },
     "repository": {

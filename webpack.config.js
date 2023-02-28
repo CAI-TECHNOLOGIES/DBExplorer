@@ -107,7 +107,7 @@ module.exports = (env, options) => {
     const mode = PROD ? 'production' : 'development';
 
     const entry = {
-        react_app: './querybook/webapp/index.tsx',
+        react_app: './webapp/index.tsx',
     };
 
     const devTool = PROD
@@ -157,11 +157,11 @@ module.exports = (env, options) => {
 
             // emulate baseUrl + paths behavior in tsConfig until tsconfig path plugin is fixed
             modules: [
-                path.resolve(__dirname, './querybook/webapp/'),
+                path.resolve(__dirname, './webapp/'),
                 'node_modules',
             ],
             alias: {
-                config: path.resolve(__dirname, './querybook/config/'),
+                config: path.resolve(__dirname, './config/'),
             },
         },
 
@@ -219,7 +219,7 @@ module.exports = (env, options) => {
 
                 {
                     test: /\.ya?ml$/,
-                    include: path.resolve(__dirname, 'querybook/config'),
+                    include: path.resolve(__dirname, 'config'),
                     use: 'yaml-loader',
                 },
                 {
@@ -255,7 +255,7 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 title: appName,
-                template: './querybook/webapp/index.html',
+                template: './webapp/index.html',
                 chunks: (entry.custom ? ['custom'] : []).concat(['react_app']),
                 chunksSortMode: 'manual',
             }),
